@@ -17,6 +17,8 @@ public class CharakterMovement : MonoBehaviour
     [SerializeField] private Transform groundcheckPosition;
     [SerializeField] private float groundcheckRadius;
     [SerializeField] private LayerMask layerGroundcheck;
+    [SerializeField] private int startingjumpcount;
+    private int jumpcount;
 
     private bool isFacingRight = true;
 
@@ -40,7 +42,15 @@ public class CharakterMovement : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(groundcheckPosition.position,groundcheckRadius, layerGroundcheck))
         {
+            jumpcount = startingjumpcount;
+            
+        }
+
+        if (jumpcount >0)
+        {
             rb.velocity = new Vector2(x: 0f, y: jumpforce);
+            jumpcount = jumpcount - 1;
+
         }
     }
     void OnSneak()
