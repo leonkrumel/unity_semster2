@@ -19,6 +19,7 @@ public class CharakterMovement : MonoBehaviour
     [SerializeField] private LayerMask layerGroundcheck;
     [SerializeField] private int startingjumpcount;
     private int jumpcount;
+    
 
     private bool isFacingRight = true;
 
@@ -89,4 +90,6 @@ public class CharakterMovement : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-}
+    
+    }
+
