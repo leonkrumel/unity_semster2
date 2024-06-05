@@ -13,7 +13,6 @@ public class CharakterMovement : MonoBehaviour
    //klammer mit altgr 8/9
     [SerializeField] private float jumpforce = 5f;
     [SerializeField] private float movementspedd = 5f;
-
     [SerializeField] private Transform groundcheckPosition;
     [SerializeField] private float groundcheckRadius;
     [SerializeField] private LayerMask layerGroundcheck;
@@ -59,7 +58,7 @@ public class CharakterMovement : MonoBehaviour
         Framecounter = Framecounter + 1;
         Debug.Log(message:"sneak!"+ Framecounter);
     }
-    void OnSprint(InputValue inputvalue)
+    void OnSprint (InputValue inputvalue)
     {
         float isSprinting = inputvalue.Get<float>();
         Debug.Log(message: "SPRINT!" + isSprinting);
