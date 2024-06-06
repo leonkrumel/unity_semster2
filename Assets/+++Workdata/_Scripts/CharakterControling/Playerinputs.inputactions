@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Pausemenu",
+                    "type": "Button",
+                    "id": "dd630ff0-a348-4ee6-a999-1e59cdd4e5b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -108,6 +117,45 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e174c0a1-712e-4f1e-ad08-6ae4616336bd",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pausemenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "interactions",
+            "id": "465c57ef-90cb-4533-b127-fbd0f239ce01",
+            "actions": [
+                {
+                    "name": "pausegame",
+                    "type": "Button",
+                    "id": "35396fc0-99b4-42aa-86ce-d633eed983dd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3ef0386d-c12d-4b8a-b8de-f4829e66d10e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "pausegame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

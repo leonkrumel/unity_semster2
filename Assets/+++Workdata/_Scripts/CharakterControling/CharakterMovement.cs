@@ -80,6 +80,9 @@ public class CharakterMovement : MonoBehaviour
         
     }
 
+   
+    
+
     void Flip()
     {
         Vector3 currentScale = transform.localScale;

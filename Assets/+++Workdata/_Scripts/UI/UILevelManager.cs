@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UILevelManager : MonoBehaviour
 {
+    private CharakterMovement charaktermovementsc;
     [SerializeField] private CanvasGroup panelWin;
     [SerializeField] private Button buttonnextlevel;
     [SerializeField] private Button buttonplayagainwin;
@@ -16,18 +18,24 @@ public class UILevelManager : MonoBehaviour
     [SerializeField] private Button menubuttonlose;
     [SerializeField] private string nameNextScene;
     [SerializeField] private string menuscene;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
+        charaktermovementsc = FindObjectOfType<CharakterMovement>();
         //win und lose screen hide
         panelWin.HideCanvasGroup();
         panelLOSE.HideCanvasGroup();
+       
         
         buttonplayagainwin.onClick.AddListener(RestartLevel);
         buttonplayagainLOSE.onClick.AddListener(RestartLevel);
         buttonnextlevel.onClick.AddListener(LoadNextLevel);
         menubuttonlose.onClick.AddListener(backtoMenu);
         menubuttonwin.onClick.AddListener(backtoMenu);
+        
+        
         Time.timeScale = 1f;
 
 
@@ -63,6 +71,10 @@ public class UILevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(menuscene); 
     }
+
+    
+
+    
 
    
 }
