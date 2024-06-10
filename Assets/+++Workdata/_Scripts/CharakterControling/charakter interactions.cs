@@ -29,6 +29,11 @@ public class victoryarea : MonoBehaviour
             Debug.Log(message: "dead");
             uiLevelManger.OnGameLose();
         }
+        else if (other.CompareTag("coin"))
+        {
+            uiLevelManger.AddCoin();
+            Destroy(other.gameObject);
+        }
     }
 
     

@@ -34,6 +34,30 @@ public class MainMenuScript : MonoBehaviour
         level2button.onClick.AddListener(LoadLevel2);
         level3button.onClick.AddListener(LoadLevel3);
         QUitgamebutton.onClick.AddListener(quitgame);
+
+        level2button.interactable = false;
+        if (PlayerPrefs.HasKey(nameNextScene2))
+        {
+
+            if ( PlayerPrefs.GetInt(nameNextScene2) == 1)
+            {
+                level2button.interactable = true;
+            }
+
+           
+        }
+        
+        level3button.interactable = false;
+        if (PlayerPrefs.HasKey(nameNextScene3))
+        {
+
+            if ( PlayerPrefs.GetInt(nameNextScene3) == 1)
+            {
+                level3button.interactable = true;
+            }
+
+           
+        }
         
     }
 

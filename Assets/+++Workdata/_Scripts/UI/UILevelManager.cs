@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,9 @@ public class UILevelManager : MonoBehaviour
     [SerializeField] private Button menubuttonlose;
     [SerializeField] private string nameNextScene;
     [SerializeField] private string menuscene;
+
+    private int coincounter = 0;
+    [SerializeField] private TextMeshProUGUI txtcoincount;
     
     
     // Start is called before the first frame update
@@ -38,6 +42,7 @@ public class UILevelManager : MonoBehaviour
         
         //geschwindigkeit der zeit auf "normal" gesetzt
         Time.timeScale = 1f;
+        txtcoincount.text = coincounter.ToString();
 
 
     }
@@ -46,6 +51,7 @@ public class UILevelManager : MonoBehaviour
     {
         //winscreen show
         panelWin.ShowCanvasGroup();
+        PlayerPrefs.SetInt(nameNextScene, 1);
         Time.timeScale = 0f;
     }
 
@@ -54,6 +60,12 @@ public class UILevelManager : MonoBehaviour
         //losescreen show
         panelLOSE.ShowCanvasGroup();
         Time.timeScale = 0f;
+    }
+
+    public void AddCoin()
+    {
+        coincounter++; //coincount++; same as coincount = coincount +1;
+        txtcoincount.text = coincounter.ToString();
     }
 
     void RestartLevel()
