@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UILevelManager : MonoBehaviour
 {
+   //serializefiled feld in unity zum auswählen von buttons/panels usw.
     private CharakterMovement charaktermovementsc;
     [SerializeField] private CanvasGroup panelWin;
     [SerializeField] private Button buttonnextlevel;
@@ -28,14 +29,14 @@ public class UILevelManager : MonoBehaviour
         panelWin.HideCanvasGroup();
         panelLOSE.HideCanvasGroup();
        
-        
+        //zuweisen was die einzelnen knöpfe beim klicken machen
         buttonplayagainwin.onClick.AddListener(RestartLevel);
         buttonplayagainLOSE.onClick.AddListener(RestartLevel);
         buttonnextlevel.onClick.AddListener(LoadNextLevel);
         menubuttonlose.onClick.AddListener(backtoMenu);
         menubuttonwin.onClick.AddListener(backtoMenu);
         
-        
+        //geschwindigkeit der zeit auf "normal" gesetzt
         Time.timeScale = 1f;
 
 
@@ -69,6 +70,7 @@ public class UILevelManager : MonoBehaviour
 
     void backtoMenu()
     {
+        //back to menu
         SceneManager.LoadScene(menuscene); 
     }
 

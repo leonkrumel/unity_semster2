@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class pausemenu : MonoBehaviour
 {
     private Playerinputs playercontroles;
+    //greifft auf das neue input system im "menu" ordner zu
     private InputAction menu;
 
     [SerializeField] private GameObject pauseUI;

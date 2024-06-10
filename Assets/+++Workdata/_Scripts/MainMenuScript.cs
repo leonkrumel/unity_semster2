@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    //serializefiled feld in unity zum auswählen von buttons/panels usw.
     [SerializeField] private CanvasGroup mainpanel;
     [SerializeField] private Button startnewGamebutton;
     [SerializeField] private Button levelselectionbutton;
@@ -17,13 +18,14 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private Button quitlevelselectionbutton;
     
     [SerializeField] private Button QUitgamebutton;
-    
+    //string ist ein feld zum schreiben
     [SerializeField] private string nameNextScene1;
     [SerializeField] private string nameNextScene2;
     [SerializeField] private string nameNextScene3;
     // Start is called before the first frame update
     void Start()
     {
+        //zuweisen was die einzelnen knöpfe/panel machen
         levelSelectionPanel.HideCanvasGroup();
         startnewGamebutton.onClick.AddListener(LoadLevel1);
         levelselectionbutton.onClick.AddListener(openLevelPanel);
@@ -41,19 +43,23 @@ public class MainMenuScript : MonoBehaviour
         
     }
 
+   
     void closeLevelPanel()
     {
+        //levelscreen ausblenden
         levelSelectionPanel.HideCanvasGroup();
         mainpanel.ShowCanvasGroup();
     }
     void openLevelPanel()
     {
+        //levelscreen zeigen
         levelSelectionPanel.ShowCanvasGroup();
         mainpanel.ShowCanvasGroup();
     }
     
     void LoadLevel1()
     {
+        //aus dem scenenmanager die scene laden die ins SerializeField geschrieben wurde
         //loadnextlevel
         SceneManager.LoadScene(nameNextScene1);
     }
@@ -71,6 +77,7 @@ public class MainMenuScript : MonoBehaviour
     }
     public void quitgame()
     {
+        //außerhalb von unity das programm schließen
         Application.Quit();
         Debug.Log(message:"gameclosed");
     }

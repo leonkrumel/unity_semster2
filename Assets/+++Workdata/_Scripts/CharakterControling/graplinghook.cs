@@ -10,6 +10,7 @@ public class graplinghook : MonoBehaviour
     [SerializeField] private LineRenderer rope;
 
     private Vector3 grapplepoint;
+    public bool isgrappeled;
 
     private DistanceJoint2D joint;
     // Start is called before the first frame update
@@ -42,6 +43,7 @@ public class graplinghook : MonoBehaviour
                 rope.SetPosition(0, grapplepoint);
                 rope.SetPosition(1, transform.position);
                 rope.enabled = true;
+                isgrappeled = true;
 
             }
         }
@@ -50,6 +52,7 @@ public class graplinghook : MonoBehaviour
         {
             joint.enabled = false;
             rope.enabled = false;
+            isgrappeled = false;
         }
 
         if (rope.enabled == true)
