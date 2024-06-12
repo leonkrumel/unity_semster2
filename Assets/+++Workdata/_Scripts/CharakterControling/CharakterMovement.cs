@@ -112,27 +112,38 @@ public class CharakterMovement : MonoBehaviour
     void MovePlayer()
     {
         //geschwindigkeit vom charakter/ Rigidbody auf der x axe* eingestellte geschwindigkeit im SerializeField 
-        
-        if (inputDirection != 0f && grapplehookscript.isgrappeled == false)
-        { 
-            rb.velocity = new Vector2(x:inputDirection * movementspedd, y: rb.velocity.y); 
-        }
-
-        if (!isGrounded && rb.velocity.y < 0f && grapplehookscript.isgrappeled == false)
+        if (grapplehookscript.isgrappeled == false)
         {
-            rb.AddForce(new Vector2(0,gravityafterapex));
-        }
+            if (inputDirection != 0f)
+            { 
+                rb.velocity = new Vector2(x:inputDirection * movementspedd, y: rb.velocity.y); 
+            }
 
-        if (grapplehookscript.isgrappeled)
+            if (isGrounded && Mathf.RoundToInt(inputDirection) == 0)
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+
+            if (!isGrounded && rb.velocity.y < 0f)
+            {
+                rb.AddForce(new Vector2(0,gravityafterapex));
+            }
+            rb.drag = tempdrag;
+
+        }
+        else
         {
             rb.AddForce(new Vector2(x:inputDirection * grapplemovement, y:0));
             rb.drag = 0;
         }
-        else
-        {
-            rb.drag = tempdrag;
-        }
+        
     }
+
+    public void Addforcegrapple()
+    {
+        rb.AddForce(rb.velocity * 50);
+    }
+    
 
 }
 

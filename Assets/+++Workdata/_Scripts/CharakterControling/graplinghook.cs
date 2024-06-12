@@ -24,6 +24,7 @@ public class graplinghook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //neues inputsystem
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(
@@ -53,6 +54,7 @@ public class graplinghook : MonoBehaviour
             joint.enabled = false;
             rope.enabled = false;
             isgrappeled = false;
+            GetComponent<CharakterMovement>().Addforcegrapple();
         }
 
         if (rope.enabled == true)
