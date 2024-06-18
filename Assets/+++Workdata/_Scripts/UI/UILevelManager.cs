@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UILevelManager : MonoBehaviour
 {
    //serializefiled feld in unity zum auswählen von buttons/panels usw.
-    private CharakterMovement charaktermovementsc;
+    private CharacterMovement charaktermovementsc;
     [SerializeField] private CanvasGroup panelWin;
     [SerializeField] private Button buttonnextlevel;
     [SerializeField] private Button buttonplayagainwin;
@@ -28,7 +28,7 @@ public class UILevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charaktermovementsc = FindObjectOfType<CharakterMovement>();
+        charaktermovementsc = FindObjectOfType<CharacterMovement>();
         //win und lose screen hide
         panelWin.HideCanvasGroup();
         panelLOSE.HideCanvasGroup();
@@ -64,6 +64,7 @@ public class UILevelManager : MonoBehaviour
 
     public void AddCoin()
     {
+        //wenn coin eingesammlt dann wird er in dem panel zu den anderen hinzugefügt
         coincounter++; //coincount++; same as coincount = coincount +1;
         txtcoincount.text = coincounter.ToString();
     }
@@ -94,15 +95,18 @@ public class UILevelManager : MonoBehaviour
 }
 
 public static class UIExtentions
+//man kann in allen scripts auf diese funktion zu greifen
 {
     public static void HideCanvasGroup(this CanvasGroup canvasGroup)
     {
+        //man kann nichts mehr anklicken und sieht das panel nicht mehr
         canvasGroup.interactable = false;
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
     }
     public static void ShowCanvasGroup(this CanvasGroup canvasGroup)
     {
+        //interactable und sichtbar
         canvasGroup.interactable = true;
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;

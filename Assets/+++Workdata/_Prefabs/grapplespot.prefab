@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2375196123511609021}
   - component: {fileID: 8304571763289692917}
   m_Layer: 6
-  m_Name: PLatform (16)
+  m_Name: grapplespot
   m_TagString: refillpower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

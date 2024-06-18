@@ -31,6 +31,7 @@ public class victoryarea : MonoBehaviour
         }
         else if (other.CompareTag("coin"))
         {
+            // wenn player obj mit coin tag berührt dann wird dieses obj zerstört
             uiLevelManger.AddCoin();
             Destroy(other.gameObject);
         }

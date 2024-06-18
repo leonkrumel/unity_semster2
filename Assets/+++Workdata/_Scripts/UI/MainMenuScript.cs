@@ -38,7 +38,8 @@ public class MainMenuScript : MonoBehaviour
         level2button.interactable = false;
         if (PlayerPrefs.HasKey(nameNextScene2))
         {
-
+            
+            //level button wird erst aktiviert wenn das level davor geschafft wurde
             if ( PlayerPrefs.GetInt(nameNextScene2) == 1)
             {
                 level2button.interactable = true;
@@ -50,7 +51,7 @@ public class MainMenuScript : MonoBehaviour
         level3button.interactable = false;
         if (PlayerPrefs.HasKey(nameNextScene3))
         {
-
+            //level button wird erst aktiviert wenn das level davor geschafft wurde
             if ( PlayerPrefs.GetInt(nameNextScene3) == 1)
             {
                 level3button.interactable = true;
@@ -60,14 +61,6 @@ public class MainMenuScript : MonoBehaviour
         }
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-   
     void closeLevelPanel()
     {
         //levelscreen ausblenden

@@ -37,6 +37,7 @@ public class pausemenu : MonoBehaviour
 
     private void OnEnable()
     {
+        //spiel wird pausiert wenn das menu geöffnet wird 
         menu = playercontroles.interactions.pausegame;
         menu.Enable();
 
@@ -64,12 +65,14 @@ public class pausemenu : MonoBehaviour
 
     void ActivateMenu()
     {
+        //zeit auf 0 und menu anzeigen
         Time.timeScale = 0;
         pauseUI.SetActive(true);
     }
 
      public void DeactivateMenu()
     {
+        //zeit wieder auf 1 und menu ausschalten
         Time.timeScale = 1;
         pauseUI.SetActive(false);
         isPaused = false;

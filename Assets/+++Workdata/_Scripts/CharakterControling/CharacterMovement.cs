@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharakterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     private int Framecounter = 0;
     private graplinghook grapplehookscript;
@@ -22,8 +22,11 @@ public class CharakterMovement : MonoBehaviour
     [SerializeField] private int startingjumpcount;
     [SerializeField] private float gravityafterapex;
     [SerializeField] private float grapplemovement;
+    [SerializeField] private float lerpSpeed;
     private int jumpcount;
     private float tempdrag;
+    private float isholdingsneak;
+    private Vector3 tempscale;
     
     //sagt das charakter zum anfang nach rechts guckt
 
@@ -36,15 +39,24 @@ public class CharakterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         grapplehookscript = GetComponent<graplinghook>();
         tempdrag = rb.drag;
+        tempscale = transform.localScale;
         
         Debug.Log(message: "Start!");
     }
 
     // Update is called once per frame
-    void Update() { }
+
+    void Update()
+    {
+        if (isholdingsneak == 0)
+        {
+            transform.localScale = new Vector2(transform.localScale.x, tempscale.y);
+        }
+    }
 
     private void FixedUpdate()
     {
+        //checkt ob player auf dem boden ist
        MovePlayer();
        isGrounded = Physics2D.OverlapCircle(groundcheckPosition.position, groundcheckRadius, layerGroundcheck);
     }
@@ -58,19 +70,22 @@ public class CharakterMovement : MonoBehaviour
             jumpcount = startingjumpcount;
             
         }
-        // wenn die sprünge größer als null sind dann kann der player springen
+        // wenn die sprünge größer als 0 sind dann kann der player springen
 
         if (jumpcount >0)
         {
-            rb.velocity = new Vector2(x: 0f, y: jumpforce);
+            rb.velocity = new Vector2(x: rb.velocity.x, y: jumpforce);
             jumpcount = jumpcount - 1;
 
         }
     }
-    void OnSneak()
+    void OnSneak(InputValue inputvalue)
     {
+        //der scale wird halbiert wenn sneak gedrückt wird 
+        isholdingsneak = inputvalue.Get<float>();
         Framecounter = Framecounter + 1;
         Debug.Log(message:"sneak!"+ Framecounter);
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2);
     }
     void OnSprint (InputValue inputvalue)
     {
@@ -111,21 +126,16 @@ public class CharakterMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        //geschwindigkeit vom charakter/ Rigidbody auf der x axe* eingestellte geschwindigkeit im SerializeField 
+        //geschwindigkeit vom charakter/ Rigidbody auf der x axe * eingestellte geschwindigkeit im SerializeField 
         if (grapplehookscript.isgrappeled == false)
         {
-            if (inputDirection != 0f)
-            { 
-                rb.velocity = new Vector2(x:inputDirection * movementspedd, y: rb.velocity.y); 
-            }
-
-            if (isGrounded && Mathf.RoundToInt(inputDirection) == 0)
-            {
-                rb.velocity = new Vector2(0f, rb.velocity.y);
-            }
+            //der charakter bescheunigt langsam
+            var targetVelocity = new Vector2(inputDirection * movementspedd, rb.velocity.y);
+            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
 
             if (!isGrounded && rb.velocity.y < 0f)
             {
+                //wenn nicht auf dem boden und charakter fällt dann geschwindigkeit erhöhen beim fallen
                 rb.AddForce(new Vector2(0,gravityafterapex));
             }
             rb.drag = tempdrag;
@@ -133,14 +143,17 @@ public class CharakterMovement : MonoBehaviour
         }
         else
         {
+            //fügt eine kraft die den player schneller macht hinzu
             rb.AddForce(new Vector2(x:inputDirection * grapplemovement, y:0));
             rb.drag = 0;
         }
         
     }
 
+   
     public void Addforcegrapple()
     {
+        //nach loslassen der maustaste geschwindigkeit*50
         rb.AddForce(rb.velocity * 50);
     }
     
